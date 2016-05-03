@@ -50,7 +50,7 @@ $input = fgets($inputs);
                     $file = trim($input);
                     if(file_exists($file)){
                     $filebody = file_get_contents($file, "r");
-                    remoteshell_connect($url,$password,$cmd,$type, $file, $filebody);
+                    remoteshell_connect($url,$password,"",$type, $file, $filebody);
                     print "[*] File uploaded ".$file."\n";
                     }else{
                     print "[!] File not found.\n";
