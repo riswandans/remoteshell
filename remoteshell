@@ -1,4 +1,6 @@
 #!/bin/bash
+GREEN='\033[0;32m'
+printf "${GREEN}"
 printf "
   _____            _____   _              _   _ 
  |  __ \          / ____| | |            | | | |
