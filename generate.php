@@ -16,6 +16,10 @@ $input = fgets($inputs);
    $fp = fopen($location, 'w');
    fwrite($fp, $body);
    fclose($fp);
-   print "[*] Success generate remote shell -> ".$location;
+   if(file_exists($location)){
+      print "[*] Success generate remote shell -> ".$location;
+   }else{
+      print "[!] Failed generate remoteshell";
+   }
 fclose($inputs);
 ?>
