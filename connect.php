@@ -44,7 +44,7 @@ $input = fgets($inputs);
                 $type = "upload";
                 $name = "upload";
                 while(1){
-                    print "\33[1;31mRemoteShell@upload > File: \33[1;37m";
+                    print "\33[1;31mRemoteShell@$os > File: \33[1;37m";
                     $inputs = fopen("php://stdin","r");
                     $input = fgets($inputs);
                     $file = trim($input);
