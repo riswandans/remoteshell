@@ -1,5 +1,5 @@
 ### RemoteShell
-Simple Web Remoteshell, execute shell commands on another computer.
+Simple Webshell based on Terminal.
 
 [![asciicast](https://asciinema.org/a/03bk17fmz1w0m4no95og3ywch.png)](https://asciinema.org/a/03bk17fmz1w0m4no95og3ywch?autoplay=1)
 
